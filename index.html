@@ -19,8 +19,8 @@
 		<h1 class="header">精选必考</h1>
 		<div class="tab">
 			<ul>
-				<li class="onselected">科目一</li>
-				<li>科目四</li>
+				<li v-bind:class="{'onselected':tabOneIndex==0}" v-on:click="changeTab(0)">科目一</li>
+				<li v-bind:class="{'onselected':tabOneIndex==1}" v-on:click="changeTab(1)">科目四</li>
 			</ul>
 		</div>
 		<div class="picture">
@@ -30,26 +30,26 @@
 		<div class="line"></div>
 		<!-- 圆环 -->
 		<div class="circl-block">
-			<div class="top">
+			<div class="top" v-bind:class="{'circleselected':circleon==5}" v-on:click="clickCircle(5)">
 				<img src="./image/topbg.png" class="top-bg" alt=""><br/>
 				精选必考
 			</div>
 			<div class="middle"></div>
 			<div class="bottom"></div>
 			<!-- 周边圆环 -->
-			<div class="lefttop">
+			<div class="lefttop"  v-bind:class="{'circleselected':circleon==1}" v-on:click="clickCircle(1)">
 				<img src="./image/lefttopbg.png" class="top-bg" alt=""><br/>
 				基础练习
 			</div>
-			<div class="leftbottom">
+			<div class="leftbottom" v-bind:class="{'circleselected':circleon==2}" v-on:click="clickCircle(2)">
 				<img src="./image/leftbottombg.png" class="top-bg" alt=""><br/>
 				专项练习
 			</div>
-			<div class="righttop">
+			<div class="righttop" v-bind:class="{'circleselected':circleon==3}" v-on:click="clickCircle(3)">
 				<img src="./image/righttopbg.png" class="top-bg" alt=""><br/>
 				模拟考试
 			</div>
-			<div class="rightbottom">
+			<div class="rightbottom" v-bind:class="{'circleselected':circleon==4}" v-on:click="clickCircle(4)">
 				<img src="./image/rightbottom.png" class="top-bg" alt=""><br/>
 				错题重做
 			</div>
@@ -58,10 +58,10 @@
 		<div class="line"></div>
 		<!-- 驾考咨询 -->
 		<div class="text">
-			<div class="title">驾考资讯</div>
+			<div class="title">驾考资讯 <span class="morebtn">更多></span></div>
 			<div class="text-tab">
-				<div>科目一</div>
-				<div>科目四</div>
+				<div v-bind:class="{'kmselected':tabTwoIndex==2}" v-on:click="changeTabTwo(2)">科目一</div>
+				<div v-bind:class="{'kmselected':tabTwoIndex==3}" v-on:click="changeTabTwo(3)">科目四</div>
 			</div>
 			<div class="main">
 				<div class="clear">
@@ -83,23 +83,32 @@
 
 		</div>
 	</div>
-
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 	<script src="./rem.js"></script>
 
 	<script>
-		// var sticky = (function () {
-		// 	var vendorList = ['', '-webkit-', '-ms-', '-moz-', '-o-'],
-		// 		vendorListLength = vendorList.length,
-		// 		stickyElement = document.createElement('div');
-		// 	for (var i = 0; i < vendorListLength; i++) {
-		// 		stickyElement.style.position = vendorList[i] + 'sticky';
-		// 		if (stickyElement.style.position !== '') {
-		// 			return true;
-		// 		}
-		// 	}
-		// 	return false;
-		// })();
-
+		var app = new Vue({
+			el: "#app",
+			data: {
+				tabOneIndex: 0, //tab切换选中
+				tabTwoIndex:2, //tab切换选中
+				circleon:0, //圆环选中值
+				dialogShow: false,
+			},
+			methods:{
+				changeTab: function (data) {
+					this.tabOneIndex = data;
+				},
+				changeTabTwo: function (data) {
+					this.tabTwoIndex = data;
+				},
+				// 圆环点击事件
+				clickCircle: function (data) {
+					debugger
+					this.circleon = data;
+				},
+			}
+		});
 	</script>
 </body>
 </html>

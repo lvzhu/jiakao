@@ -25,15 +25,19 @@ body {
   margin: 0.4rem auto;
   list-style: none;
   border: 2px solid #00a0e9;
-  width: 50%;
   display: inline-block;
   border-radius: 20px;
-  background: #00a0e9;
+  overflow: hidden;
+  /* background: #00a0e9; */
 }
 .tab ul li {
   display: inline-block;
-  padding: 0.1rem;
+  padding: 0.1rem 0.6rem;
   margin: 0;
+  color: #666;
+}
+.tab ul li.onselected {
+  background: #00a0e9;
   color: #fff;
 }
 .picture img {
@@ -164,7 +168,6 @@ body {
 }
 .text-tab {
   margin: 0.1rem 0;
-  padding-bottom: 0.2rem;
   display: flex;
   justify-content: space-evenly;
   font-size: 0.3rem;
@@ -172,7 +175,13 @@ body {
   border-bottom: 1px solid #ddd;
 }
 .text-tab div {
+    color: #999;
+    padding: 0 0.2rem 0.2rem;
     cursor: pointer;
+}
+.text-tab div.kmselected {
+    color: #00a0e9;
+    border-bottom: 2px solid #00a0e9;
 }
 .main {
   margin: 0 0.2rem;
@@ -225,4 +234,13 @@ body {
     font-size: 0.3rem;
     box-shadow: 0 0 0.3rem #00a0e9;
     cursor: pointer;
+}
+.morebtn{
+  float: right;
+  cursor: pointer;
+  font-weight: 100;
+}
+.circleselected {
+  opacity: 1.6;
+  box-shadow: 0 0 0.6rem #059913;
 }
