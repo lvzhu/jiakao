@@ -8,10 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+	<meta name="apple-mobile-web-app-status-bar-styEEle" content="black">
+	<!-- 引入vant样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
 	<link rel="stylesheet" href="./index.css">
-
 </head>
 
 <body>
@@ -23,33 +23,71 @@
 				<li v-bind:class="{'onselected':tabOneIndex==1}" v-on:click="changeTab(1)">科目四</li>
 			</ul>
 		</div>
+		<!-- 轮播 -->
 		<div class="picture">
-			<img src="./image/1.png" alt="">
+			<van-swipe :autoplay="3000">
+					<van-swipe-item>
+						<img width="92%" src="./image/1.png" alt="">
+					</van-swipe-item>
+					<van-swipe-item>
+						<img width="92%" src="./image/2.png" alt="">
+					</van-swipe-item>
+			</van-swipe>
 		</div>
 		<!-- 分割线 -->
 		<div class="line"></div>
-		<!-- 圆环 -->
-		<div class="circl-block">
-			<div class="top" v-bind:class="{'circleselected':circleon==5}" v-on:click="clickCircle(5)">
+		<!-- 四圆环 if else 判断显示哪个圆环即可-->
+		<div class="circl-block forue">
+			<div class="top" v-bind:class="{'circleselectedtop':circleon==5}" v-on:click="clickCircle(5)">
 				<img src="./image/topbg.png" class="top-bg" alt=""><br/>
 				精选必考
 			</div>
 			<div class="middle"></div>
 			<div class="bottom"></div>
 			<!-- 周边圆环 -->
-			<div class="lefttop"  v-bind:class="{'circleselected':circleon==1}" v-on:click="clickCircle(1)">
+			<div class="lefttop"  v-bind:class="{'circleselectedlt':circleon==1}" v-on:click="clickCircle(1)">
 				<img src="./image/lefttopbg.png" class="top-bg" alt=""><br/>
 				基础练习
 			</div>
-			<div class="leftbottom" v-bind:class="{'circleselected':circleon==2}" v-on:click="clickCircle(2)">
+			<div class="leftbottom" v-bind:class="{'circleselectedlb':circleon==2}" v-on:click="clickCircle(2)">
 				<img src="./image/leftbottombg.png" class="top-bg" alt=""><br/>
 				专项练习
 			</div>
-			<div class="righttop" v-bind:class="{'circleselected':circleon==3}" v-on:click="clickCircle(3)">
+			<div class="righttop" v-bind:class="{'circleselectedrt':circleon==3}" v-on:click="clickCircle(3)">
 				<img src="./image/righttopbg.png" class="top-bg" alt=""><br/>
 				模拟考试
 			</div>
-			<div class="rightbottom" v-bind:class="{'circleselected':circleon==4}" v-on:click="clickCircle(4)">
+			<div class="rightbottom" v-bind:class="{'circleselectedrb':circleon==4}" v-on:click="clickCircle(4)">
+				<img src="./image/rightbottom.png" class="top-bg" alt=""><br/>
+				错题重做
+			</div>
+		</div>
+		<!-- 五圆环 -->
+		<div class="circl-block five">
+			<div class="top" v-bind:class="{'circleselectedtop':circleon==5}" v-on:click="clickCircle(5)">
+				<img src="./image/topbg.png" class="top-bg" alt=""><br/>
+				精选必考
+			</div>
+			<div class="middle"></div>
+			<div class="bottom"></div>
+			<!-- 周边圆环 -->
+			<!-- 免费体验 -->
+			<div class="toptry"  v-bind:class="{'circleselectedtt':circleon==6}" v-on:click="clickCircle(6)">
+				免费<br/>体验
+			</div>
+			<div class="lefttop"  v-bind:class="{'circleselectedlt':circleon==1}" v-on:click="clickCircle(1)">
+				<img src="./image/lefttopbg.png" class="top-bg" alt=""><br/>
+				基础练习
+			</div>
+			<div class="leftbottom" v-bind:class="{'circleselectedlb':circleon==2}" v-on:click="clickCircle(2)">
+				<img src="./image/leftbottombg.png" class="top-bg" alt=""><br/>
+				专项练习
+			</div>
+			<div class="righttop" v-bind:class="{'circleselectedrt':circleon==3}" v-on:click="clickCircle(3)">
+				<img src="./image/righttopbg.png" class="top-bg" alt=""><br/>
+				模拟考试
+			</div>
+			<div class="rightbottom" v-bind:class="{'circleselectedrb':circleon==4}" v-on:click="clickCircle(4)">
 				<img src="./image/rightbottom.png" class="top-bg" alt=""><br/>
 				错题重做
 			</div>
@@ -79,11 +117,43 @@
 				</div>
 			</div>
 			<!-- 分享 -->
-			<div class="sharebtn"><img width="15%" src="./image/icon_share.png" alt=""> 分享给好友</div>
+			<div class="sharebtn" @click="show=true"><img width="15%" src="./image/icon_share.png" alt=""> 分享给好友</div>
 
 		</div>
+
+		<!-- 弹框 -->
+		<van-dialog
+			width='80%'
+			v-model="show"
+			confirmButtonText='提交'
+			show-cancel-button
+		>
+		<!-- 弹框主题内容 -->
+			<div class="list-cont">
+				<ul>
+					<li>
+						<div class="list-left"></div>
+						<div class="list-right"></div>
+				    </li>
+					<li>
+						<div class="list-left"></div>
+						<div class="list-right"></div>
+					</li>
+					<li>
+						<div class="list-left"></div>
+						<div class="list-right"></div>
+					</li>
+					<li>
+						<div class="list-left"></div>
+						<div class="list-right"></div>
+					</li>
+				</ul>
+			</div>
+		</van-dialog>
 	</div>
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
 	<script src="./rem.js"></script>
 
 	<script>
@@ -93,9 +163,14 @@
 				tabOneIndex: 0, //tab切换选中
 				tabTwoIndex:2, //tab切换选中
 				circleon:0, //圆环选中值
-				dialogShow: false,
+				show:false,  //弹框显示隐藏
+				images: [
+					'./image/1.png',
+					'./image/1.png'
+				]
 			},
 			methods:{
+				// tab切换
 				changeTab: function (data) {
 					this.tabOneIndex = data;
 				},
@@ -104,7 +179,6 @@
 				},
 				// 圆环点击事件
 				clickCircle: function (data) {
-					debugger
 					this.circleon = data;
 				},
 			}
