@@ -220,6 +220,7 @@ body {
 }
 .line {
   height: 0.1rem;
+  margin-bottom: 0.3rem;
   background: #efefef;
 }
 .text {
@@ -334,18 +335,4 @@ body {
 }
 .list-cont{
   padding: 0.3rem 0.2rem;
-}
-.list-cont ul li{
-  display: flex;
-  padding: 0.2rem;
-}
-.list-left{
-  width: 90%;
-  height: 0.6rem;
-  background: #ddd;
-}
-.list-right{
-  width: 10%;
-  height: 0.6rem;
-  background: #ffae3b;
 }
