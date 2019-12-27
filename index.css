@@ -337,8 +337,9 @@ body {
   padding: 0 0.2rem;
 }
 .wxaddtitle {
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   color: #3c3b3b;
+  font-size: 0.2rem;
   font-weight: bold;
 }
 .radiolist{
